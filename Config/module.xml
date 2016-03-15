@@ -21,6 +21,6 @@
         <email>zzuutt34@free.fr</email>
     </author>
     <type>payment</type>
-    <thelia>2.1.0</thelia>
+    <thelia>2.2.2</thelia>
     <stability>other</stability>
 </module>
