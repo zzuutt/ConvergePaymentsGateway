@@ -1,0 +1,35 @@
+{* ConvergePaymentsGateway custom payment gateway redirection page body *}
+
+<div id="payment-success" class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">{intl l="You choose to pay by"} : <span class="payment-method">{loop name="payment-module" type="module" id=$PAYMENT_MODULE}{$TITLE}{/loop}</span></h3>
+    </div>
+
+    <div class="panel-body">
+        {if $cart_count > 0}
+            <div class="panel-heading clearfix">
+                {intl l="Connecting to the secure payment server, please wait a few seconds..."}
+            </div>
+
+            <div class="panel-body">
+                <form action="{$gateway_url nofilter}" method="post" id="payement_gateway_form">
+                    {foreach from=$payment_form_data key='name' item='value'}
+                        {* add support for form fields with duplicate names *}
+                        {if is_array($value)}
+                            {$values = $value}
+                            {foreach from=$values item='value'}
+                                <input type="hidden" name="{$name}" value="{$value}" />
+                            {/foreach}
+                        {else}
+                            <input type="hidden" name="{$name}" value="{$value}" />
+                        {/if}
+                    {/foreach}
+
+                    <p>{intl l='If nothing happens within 10 seconds, <a id="force-submit-payment-form" href="#">please click here</a>.'}</p>
+                </form>
+            </div>
+        {else}
+            {intl l="Sorry, your cart is empty. There's nothing to pay."}
+        {/if}
+    </div>
+</div>

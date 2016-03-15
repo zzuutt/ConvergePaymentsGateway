@@ -1,0 +1,19 @@
+{loop name="convergepayments" type="converge-payments" order_id=$order_id}
+<div class="table-responsive">
+    <table class="table table-striped table-condensed table-left-aligned">
+        <caption class="clearfix">
+            {intl l='Converge payments information' d="convergepayments"}
+        </caption>
+        <tbody>
+        <tr>
+            <th>{intl l='Code' d="convergepayments"}</th>
+            <td>{$MESSAGE_ID}</td>
+        </tr>
+        <tr>
+            <th>{intl l='Message' d="convergepayments"}</th>
+            <td>{$MESSAGE}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+{/loop}

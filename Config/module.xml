@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="http://thelia.net/schema/dic/module"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://thelia.net/schema/dic/module http://thelia.net/schema/dic/module/module-2_1.xsd">
+    <fullnamespace>ConvergePaymentsGateway\ConvergePaymentsGateway</fullnamespace>
+    <descriptive locale="en_US">
+        <title>Converge Payments Gateway</title>
+        <subtitle>Evalon Converge Payment gateway</subtitle>
+    </descriptive>
+    <descriptive locale="fr_FR">
+        <title>Converge Payments Passerelle</title>
+        <subtitle>Plateforme de paiement Evalon Converge</subtitle>
+    </descriptive>
+    <languages>
+        <language>en_US</language>
+        <language>fr_FR</language>
+    </languages>
+    <version>1.0</version>
+    <author>
+        <name>Zzuutt</name>
+        <email>zzuutt34@free.fr</email>
+    </author>
+    <type>payment</type>
+    <thelia>2.1.0</thelia>
+    <stability>other</stability>
+</module>

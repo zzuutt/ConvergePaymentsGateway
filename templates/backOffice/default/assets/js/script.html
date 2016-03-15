@@ -1,0 +1,64 @@
+<script>
+    $(function() {
+        $('#multi_currencies').on('change',
+                function(e){
+                    currenciesChecked();
+                }
+        );
+
+        $('#test_mode').on('change',
+                function(e){
+                    ipAuthorized();
+                }
+        );
+
+        currenciesChecked();
+        ipAuthorized();
+
+        // Atomatic ajax tab load, if data-href is defined.
+        $('.nav-tabs a[data-href]').on('shown.bs.tab', function(ev) {
+            var $this = $(this);
+            $($this.attr('href')).load($this.data('href'), function(ev) {
+                if($this.data('callback')) {
+                    eval($this.data('callback') + '();');
+                }
+            });
+        });
+        $.imageUploadManager.initImageDropZone();
+        $('.use_default_rewriten_url').click(function(ev) {
+            alert("Not functionnal");
+            ev.preventDefault();
+        });
+        // Show proper tab, if defined
+        {if ! empty($current_tab)}
+        $('#tabbed-menu a[href="#{$current_tab}"]').tab('show')
+        {/if}
+        // Initialize folder select value
+        {if $module_id != 0}
+        $('#module_id').val("{$module_id}").change();
+        {/if}
+
+
+    });
+
+    function currenciesChecked() {
+        if (!$('#multi_currencies').is(':checked')) {
+            $('#currency_authorized').attr('disabled', true);
+            $('#default_currency').show();
+        }
+        else {
+            $('#currency_authorized').attr('disabled', false);
+            $('#default_currency').hide();
+        }
+    };
+
+    function ipAuthorized() {
+        if (!$('#test_mode').is(':checked')) {
+            $('#ip_authorized').attr('disabled', true);
+        }
+        else {
+            $('#ip_authorized').attr('disabled', false);
+        }
+    };
+
+</script>

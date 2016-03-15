@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<config xmlns="http://thelia.net/schema/dic/config"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://thelia.net/schema/dic/config http://thelia.net/schema/dic/config/thelia-1.0.xsd">
+
+    <loops>
+        <loop class="ConvergePaymentsGateway\Loop\ConvergePayments" name="converge-payments"/>
+    </loops>
+
+    <forms>
+        <form name="converge.form.config" class="ConvergePaymentsGateway\Form\ConfigForm"/>
+    </forms>
+
+    <hooks>
+        <hook id="converge.hook.back.config" class="ConvergePaymentsGateway\Hook\Back\ConfigHook" scope="request">
+            <tag name="hook.event_listener" type="back" event="module.configuration"/>
+            <tag name="hook.event_listener" type="back" event="module.config-js" method="onModuleConfigurationAddJs"/>
+            <tag name="hook.event_listener" type="back" event="order-edit.cart-bottom" method="showPaymentInfo"/>
+        </hook>
+
+        <hook id="converge.hook.front.order" class="ConvergePaymentsGateway\Hook\Front\OrderHook" scope="request">
+            <tag name="hook.event_listener" type="frontoffice" event="order-payment-gateway.body"/>
+        </hook>
+    </hooks>
+
+    <services>
+        <service id="converge.service.sim.request" class="ConvergePaymentsGateway\Service\RequestService">
+            <argument type="service" id="router.convergepaymentsgateway"/>
+            <argument type="service" id="thelia.url.manager"/>
+        </service>
+
+        <service id="converge.service.sim.response" class="ConvergePaymentsGateway\Service\ResponseService">
+            <argument type="service" id="event_dispatcher"/>
+        </service>
+    </services>
+
+</config>

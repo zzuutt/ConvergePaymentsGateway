@@ -1,0 +1,158 @@
+{* ConvergePaymentsGateway module configuration *}
+
+{set_previous_url path='/admin/modules'}
+{$page_url = {navigate to='current'}}
+{$back_url = {navigate to='previous'}}
+{$save_url = {url path='/admin/module/ConvergePaymentsGateway'}}
+
+<div class="row">
+    <div class="col-md-12 general-block-decorator clearfix">
+
+        <ul class="nav nav-tabs" id="tabbed-menu">
+            <li class="active"><a href="#general" data-toggle="tab">{intl l="General description"}</a></li>
+            <li><a href="#images" data-toggle="tab">{intl l="Images"}</a></li>
+            <li><a href="#logs" data-toggle="tab">{intl l="Logs"}</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="general">
+                <div class="form-container">
+
+                {form name='converge.form.config'}
+                    <div class="general-block-decorator form-container">
+                        <form method="post" action="{$save_url}">
+                            {form_hidden_fields form=$form}
+
+                            {include
+                            file = 'includes/inner-form-toolbar.html'
+                            page_url = $page_url
+                            close_url = $back_url
+                            hide_flags = true
+                            }
+
+                            {if $form_error}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="alert alert-danger">{$form_error_message}</div>
+                                </div>
+                            </div>
+                            {/if}
+
+
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        {render_form_field form=$form field='merchant_id'}
+                                    </div>
+                                    <div class="col-md-4">
+                                        {render_form_field form=$form field='user_id'}
+                                    </div>
+                                    <div class="col-md-4">
+                                        {render_form_field form=$form field='pin'}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        {render_form_field form=$form field='minimum_amount'}
+                                        {render_form_field form=$form field='maximum_amount'}
+                                    </div>
+                                    <div class="col-md-4">
+                                        {render_form_field form=$form field='multi_currencies'}
+                                        <div id="default_currency" class="alert alert-info"><span class="glyphicon glyphicon-info-sign"></span> {intl l="The default currency is USD" d="convergepaymentsgateway"}</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        {render_form_field form=$form field='currency_authorized'}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        {render_form_field form=$form field='mode'}
+                                    </div>
+                                    <div class="col-md-8">
+                                        {render_form_field form=$form field='demo_url'}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-md-8">
+                                        {render_form_field form=$form field='production_url'}
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {render_form_field form=$form field='callback_url'}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {render_form_field form=$form field='gateway_response_type'}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {render_form_field form=$form field='receipt_link_text'}
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        {render_form_field form=$form field='test_mode'}
+                                    </div>
+                                    <div class="col-md-8">
+                                        {render_form_field form=$form field='ip_authorized'}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                {/form}
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="images">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-info" role="alert">
+                            {intl l="Activate or deactivate the credit cards which you do not use." d='bo.convergepaymentsgateway'}
+                            {intl l="To do it, click on" d='bo.convergepaymentsgateway'} <span class="glyphicon glyphicon-eye-open"></span>
+                        </div>
+                    </div>
+                </div>
+                {include file='includes/image-upload-form.html' imageType='module' parentId=$module_id }
+            </div>
+            <div class="tab-pane fade" id="logs">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="general-block-decorator">
+                             <div class="panel panel-primary">
+                                 <div class="panel-heading">
+                                     <h3 class="panel-title">
+                                         <span class="glyphicon glyphicon-cog"></span>
+                                         {intl d='converge.bo.default' l="Converge Payments call log to callback URL"}
+                                     </h3>
+                                 </div>
+                                 <div class="panel-body">
+                                     <div id="log-container" style="font-family: monospace; font-size: 12px; max-height: 400px; overflow-y: scroll">
+                                         {$trace_content nofilter}
+                                     </div>
+                                 </div>
+                                 <div class="panel-footer">
+                                     <a href="{url path='/admin/module/converge-payments/log'}" class="btn btn-sm btn-primary">{intl d='atos.bo.default' l="Download full log"}</a>
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

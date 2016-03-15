@@ -1,0 +1,11 @@
+{
+    "name": "your-vendor/converge-payments-gateway-module",
+    "license": "LGPL-3.0+",
+    "type": "thelia-module",
+    "extra": {
+      "installer-name": "ConvergePaymentsGateway"
+    },
+    "require": {
+        "thelia/installer": "~1.0"
+    }
+}
