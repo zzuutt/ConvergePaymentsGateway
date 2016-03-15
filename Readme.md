@@ -21,7 +21,7 @@ composer require your-vendor/converge-payments-gateway-module:~1.0
 
 Once activated, click on the configure button, and enter the required information.
 
-During the test phase, you can define the IP addresses allowed to use the Atos module on the front office, so that your customers will not be able to pay with ConvergePayments during this test phase.
+During the test phase, you can define the IP addresses allowed to use the ConvergePayments module on the front office, so that your customers will not be able to pay with ConvergePayments during this test phase.
 
 A log of Converge post-payment callbacks is displayed in the configuration page.
 
