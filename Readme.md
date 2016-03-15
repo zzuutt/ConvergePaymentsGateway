@@ -2,6 +2,9 @@
 
 This module integrate the payment gateway [Evalon Converge Payments](https://www.elavon.com/). For now only the card purchase is developed.
 
+## Compatibility
+Developped for : Thelia 2.2.2
+
 ## Installation
 
 ### Manually
